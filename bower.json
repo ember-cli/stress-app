@@ -12,8 +12,31 @@
     "jquery": "^2.1.4",
     "loader.js": "ember-cli/loader.js#3.2.0",
     "qunit": "~1.18.0",
-    "material-design-lite-src": "unicornext/material-design-lite#master",
+    "material-design-lite-src": "google/material-design-lite#master",
     "material-design-icons": "~2.0.0",
-    "jquery-ui": "1.11.4"
+    "jquery-ui": "1.11.4",
+    "jquery-file-upload": "9.5.7",
+    "ic-ajax": "~0.3.0",
+    "pusher": "~2.2.0",
+    "date.format": "1.2.3",
+    "momentjs": "~2.10.6",
+    "moment-timezone": "~0.4.0",
+    "codemirror": "~4.1.0",
+    "imagesloaded": "~3.1.5",
+    "jquery-scrollparent": "0.1.0",
+    "ember-oauth2": "amkirwan/ember-oauth2",
+    "highcharts-release": "~4.0.4",
+    "nouislider": "~7.0.10",
+    "jquery-visible": "~1.1.0",
+    "lodash": "~3.1.0",
+    "triejs": "pthurlow/triejs",
+    "blueimp-load-image": "1.13.0",
+    "blueimp-canvas-to-blob": "2.1.1",
+    "sortable.js": "~1.2.0",
+    "zeroclipboard": "2.2.0",
+    "sinonjs": "~1.14.1"
+  },
+  "resolutions": {
+    "loader.js": "3.2.1"
   }
 }
