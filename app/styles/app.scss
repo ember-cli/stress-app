@@ -1,0 +1,32 @@
+@import "material_lite";
+
+header.mdl-layout__header a{
+  color: #eee;
+  &:hover{
+    color: #fff;
+  }
+}
+.mdl-layout__drawer{
+  border-right: none;
+  .mdl-layout-title{
+    background: unquote("rgb(#{$color-primary-dark})") ;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+  .profile{
+    padding: 10px 0px 10px 7px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    img.avatar{
+      background-color: #ddd;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: auto 48px;
+      border-radius: 50%;
+      height: 35px;
+      width: 35px
+    }
+  }
+}
+main{
+  padding: 10px;
+}
