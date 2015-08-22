@@ -12,8 +12,9 @@ We will contiue to add scenarios that make it slow, then make it fast again
 
 This app really doesn't contain many app or test files yet, rather is mostly focused on a specific issues:
 
-* many app.imports
+* many app.imports (lets get the number)
 * very large bower_components dir (80,000k+ files)
+* ... (lets keep this up to date)
 
 [We clearly need more files](https://github.com/ember-cli/stress-app/issues/2) to really start to represent real apps.
 
