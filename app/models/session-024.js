@@ -1,3 +1,4 @@
+// app/models/session-024.js
 import DS from 'ember-data';
 
 export default DS.Model.extend({

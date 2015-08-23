@@ -1,3 +1,4 @@
+// tests/helpers/resolver.js
 import Resolver from 'ember/resolver';
 import config from '../../config/environment';
 

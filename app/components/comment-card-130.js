@@ -1,3 +1,4 @@
+// app/components/comment-card-130.js
 //Author: @chancancode. Taken from https://github.com/chancancode/hn-reader/blob/master/app/components/comment-card.js
 import Ember from 'ember';
 

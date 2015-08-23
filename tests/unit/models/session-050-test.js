@@ -1,3 +1,4 @@
+// tests/unit/models/session-050-test.js
 import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('session', 'Unit | Model | session', {

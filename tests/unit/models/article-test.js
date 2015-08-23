@@ -1,3 +1,4 @@
+// tests/unit/models/article-test.js
 import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('article', 'Unit | Model | article', {

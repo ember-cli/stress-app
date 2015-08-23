@@ -1,3 +1,4 @@
+// tests/unit/routes/sessions-test.js
 import { moduleFor, test } from 'ember-qunit';
 
 moduleFor('route:sessions', 'Unit | Route | sessions', {

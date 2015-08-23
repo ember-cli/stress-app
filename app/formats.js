@@ -1,3 +1,4 @@
+// app/formats.js
 var hhmmss = {
   hour:   'numeric',
   minute: 'numeric',
