@@ -21,6 +21,14 @@ module.exports = function(defaults) {
     }
   });
 
+  process.on('exit', function(code) {
+    console.log('legacyFilesToAppend', app.legacyFilesToAppend.length);
+    console.log('legacyTestFilesToAppend', app.legacyTestFilesToAppend.length);
+    console.log('vendorStaticStyles', app.vendorStaticStyles.length);
+    console.log('vendorTestStaticStyles', app.vendorTestStaticStyles.length);
+    console.log('otherAssetPaths', app.legacyTestFilesToAppend.length);
+  });
+
   //import material design lite
   app.import('bower_components/material-design-icons/iconfont/MaterialIcons-Regular.woff2',{
     destDir: 'assets/fonts'
