@@ -9,7 +9,6 @@ for (var member in fs) {
     fs[member] = (function(old, member) {
       return function() {
         calls[member].calls++;
-        calls[member].stack.push(new Error().stack);
         return old.apply(fs, arguments);
       };
     }(old, member));
@@ -20,11 +19,6 @@ for (var member in fs) {
     };
   }
 }
-
-fs.existsSync('asdf');
-fs.existsSync('asdf');
-fs.existsSync('asdf');
-fs.existsSync('asdf');
 
 function printSorted() {
   fs.writeFileSync('foo', JSON.stringify(Object.keys(calls).map(function(a) {
