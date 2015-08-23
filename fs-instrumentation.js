@@ -13,28 +13,28 @@ for (var member in fs) {
     }(old, member));
 
     calls[member] = {
-      calls: 0,
-      stack: [],
+      calls: 0
     };
   }
 }
 
 function printSorted() {
-  fs.writeFileSync('foo', JSON.stringify(Object.keys(calls).map(function(a) {
+  fs.writeFileSync('fs-usage.out.json', JSON.stringify(Object.keys(calls).map(function(a) {
     return { calls: calls[a], method: a };
   }).sort(function(a,b) {
     return b.calls - a.calls;
   })));
+
+  console.log(' wrote: fs-usage.out.json');
+
   Object.keys(calls).forEach(function(a) {
     calls[a] = 0;
-    calls[a].stack = [];
-
   });
 }
 
 process.on('exit', function(code) {
  printSorted();
 });
-//process.on('SIGHUP', function(code) {
-// printSorted();
-//});
+process.on('SIGHUP', function(code) {
+ printSorted();
+});

@@ -22,11 +22,12 @@ module.exports = function(defaults) {
   });
 
   process.on('exit', function(code) {
-    console.log('legacyFilesToAppend', app.legacyFilesToAppend.length);
-    console.log('legacyTestFilesToAppend', app.legacyTestFilesToAppend.length);
-    console.log('vendorStaticStyles', app.vendorStaticStyles.length);
-    console.log('vendorTestStaticStyles', app.vendorTestStaticStyles.length);
-    console.log('otherAssetPaths', app.legacyTestFilesToAppend.length);
+    console.log('other stuff');
+    console.log(' - legacyFilesToAppend', app.legacyFilesToAppend.length);
+    console.log(' - legacyTestFilesToAppend', app.legacyTestFilesToAppend.length);
+    console.log(' - vendorStaticStyles', app.vendorStaticStyles.length);
+    console.log(' - vendorTestStaticStyles', app.vendorTestStaticStyles.length);
+    console.log(' - otherAssetPaths', app.otherAssetPaths.length);
   });
 
   //import material design lite
