@@ -53,7 +53,7 @@ This current state of the stress-app is pretty good respresentation of the curre
 * near term target (reasonable near term)
   * [initial warm] Build successful - 10000ms. (this is for warm, cache primed builds and restarts)
   * [rebuild] Build successful - 2500ms. (not perfect, but feels like a reasonable short term goal 50% of current)
-  * 
+
 ==== more indepth output
 
 ```
