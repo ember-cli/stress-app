@@ -1,11 +1,13 @@
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+require('./fs-instrumentation');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     'ember-cli-jquery-ui': {
       theme: 'ui-darkness'
     },
+
     sourcemaps: {
       enabled: false,
       sourceMap: false

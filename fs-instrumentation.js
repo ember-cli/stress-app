@@ -35,6 +35,6 @@ function printSorted() {
 process.on('exit', function(code) {
  printSorted();
 });
-process.on('SIGHUP', function(code) {
- printSorted();
-});
+//process.on('SIGHUP', function(code) {
+// printSorted();
+//});
