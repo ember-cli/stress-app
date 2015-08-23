@@ -12,6 +12,7 @@ We will contiue to add scenarios that make it slow, then make it fast again
 
 * many app.imports (lets get the number)
 * very large bower_components dir (87472k+ files – we hit a pathalogical scenario here that is now largely fixed)
+* medium -> large sized app
 
 ```
 cloc --skip-uniqueness {app,tests}
