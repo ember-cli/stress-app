@@ -1,5 +1,4 @@
 var fs = require('fs');
-var functions = [];
 
 var calls = Object.create(null);
 
