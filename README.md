@@ -48,7 +48,13 @@ progress so far:
   *  [initial] Build successful - 36687ms.
   *  [rebuild] Build successful - 5384ms.
 
-This current state of the stress-app (still not quite representing real apps, since we don't have many app files – just lots of deps) is still now mostly dominating be the CSS preprocessor which we will be looking at next
+This current state of the stress-app is pretty good respresentation of the current state of medium -> large sized apps. It doesn't yet represent some of the mega sized apps, but that is ok for now. Lets get these numbers down.
+
+* near term target (reasonable near term)
+  * [initial warm] Build successful - 10000ms. (this is for warm, cache primed builds and restarts)
+  * [rebuild] Build successful - 2500ms. (not perfect, but feels like a reasonable short term goal 50% of current)
+  * 
+==== more indepth output
 
 ```
 version: 1.13.0--6d06abacc7
