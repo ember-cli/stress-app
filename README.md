@@ -20,116 +20,143 @@ This app really doesn't contain many app or test files yet, rather is mostly foc
 
 ## Progress so far
 
-from ember 1.13.0 -> 1.13.8, we went from initial builds of:
+progress so far:
+
+* 1.13.0
+  *  [initial] Build successful - 22570ms.
+  *  [rebuild] Build successful - 15647ms.
+
+* 1.13.8
+  *  [initial] Build successful - 5323ms.
+  *  [rebuild] Build successful - 2288ms.
+
+* master
+  *  [initial] Build successful - 5142ms.
+  *  [rebuild] Build successful - 1963ms.
+
+This current state of the stress-app (still not quite representing real apps, since we don't have many app files – just lots of deps) is still now mostly dominating be the CSS preprocessor which we will be looking at next
 
 ```
-Build successful - 15798ms.
+version: 1.13.0--6d06abacc7
+Deprecation warning: sassOptions should be moved to your Brocfile
+Livereload server on http://localhost:35729
+Serving on http://localhost:5511/
+Autoprefixer's process() method is deprecated and will removed in next major release. Use postcss([autoprefixer]).process() instead
+Autoprefixer's process() method is deprecated and will removed in next major release. Use postcss([autoprefixer]).process() instead
+Autoprefixer's process() method is deprecated and will removed in next major release. Use postcss([autoprefixer]).process() instead
+
+Build successful - 22570ms.
 
 Slowest Trees                                 | Total
 ----------------------------------------------+---------------------
-SourcemapConcat                               | 2449ms
-SourcemapConcat                               | 2211ms
-SourcemapConcat                               | 2206ms
-SourcemapConcat                               | 2186ms
-SassCompiler                                  | 2157ms
-Funnel: App JS Files                          | 1627ms
+SourcemapConcat                               | 8108ms
+SourcemapConcat                               | 2794ms
+SourcemapConcat                               | 2524ms
+SassCompiler                                  | 2253ms
+SourcemapConcat                               | 2249ms
+Funnel: App JS Files                          | 1338ms
 
 Slowest Trees (cumulative)                    | Total (avg)
 ----------------------------------------------+---------------------
-SourcemapConcat (8)                           | 9189ms (1148 ms)
-SassCompiler (1)                              | 2157ms
-Babel (12)                                    | 1749ms (145 ms)
-Funnel: App JS Files (1)                      | 1627ms
+SourcemapConcat (8)                           | 15808ms (1976 ms)
+SassCompiler (1)                              | 2253ms
+Babel (12)                                    | 1785ms (148 ms)
+Funnel: App JS Files (1)                      | 1338ms
 
-```
+➜  slow-ember-cli-project git:(master) ✗ touch app/app.js
+➜  slow-ember-cli-project git:(master) ✗ file changed app.js
+Autoprefixer's process() method is deprecated and will removed in next major release. Use postcss([autoprefixer]).process() instead
+Autoprefixer's process() method is deprecated and will removed in next major release. Use postcss([autoprefixer]).process() instead
+Autoprefixer's process() method is deprecated and will removed in next major release. Use postcss([autoprefixer]).process() instead
 
-and incremental builds of:
-
-```
-
-Build successful - 12759ms.
+Build successful - 15647ms.
 
 Slowest Trees                                 | Total
 ----------------------------------------------+---------------------
-SourcemapConcat                               | 2474ms
-SourcemapConcat                               | 2438ms
-SourcemapConcat                               | 2274ms
-SassCompiler                                  | 2047ms
-SourcemapConcat                               | 1874ms
-Funnel: App JS Files                          | 1018ms
+SourcemapConcat                               | 6360ms
+SourcemapConcat                               | 2147ms
+SourcemapConcat                               | 1904ms
+SourcemapConcat                               | 1898ms
+SassCompiler                                  | 1738ms
 
 Slowest Trees (cumulative)                    | Total (avg)
 ----------------------------------------------+---------------------
-SourcemapConcat (8)                           | 9140ms (1142 ms)
-SassCompiler (1)                              | 2047ms
-Funnel: App JS Files (1)                      | 1018ms
-
+SourcemapConcat (8)                           | 12378ms (1547 ms)
+SassCompiler (1)                              | 1738ms
+```
+---
 
 ```
+➜  slow-ember-cli-project git:(master) ✗ version: 1.13.8--1121141036
+Deprecation warning: sassOptions should be moved to your Brocfile
+Livereload server on http://localhost:49152
+Serving on http://localhost:5511/
+Autoprefixer's process() method is deprecated and will removed in next major release. Use postcss([autoprefixer]).process() instead
+Autoprefixer's process() method is deprecated and will removed in next major release. Use postcss([autoprefixer]).process() instead
+Autoprefixer's process() method is deprecated and will removed in next major release. Use postcss([autoprefixer]).process() instead
 
-
-to 1.13.8 initial builds of:
-
-```
-Build successful - 6368ms.
+Build successful - 5323ms.
 
 Slowest Trees                                 | Total
 ----------------------------------------------+---------------------
-SassCompiler                                  | 3089ms
+SassCompiler                                  | 1941ms
 
 Slowest Trees (cumulative)                    | Total (avg)
 ----------------------------------------------+---------------------
-SassCompiler (1)                              | 3089ms
-Babel (12)                                    | 1632ms (136 ms)
+SassCompiler (1)                              | 1941ms
+Babel (12)                                    | 1637ms (136 ms)
 
-```
+➜  slow-ember-cli-project git:(master) ✗ touch app/app.js
+➜  slow-ember-cli-project git:(master) ✗ file changed app.js
 
-and incremental builds of:
-
-```
-
-Build successful - 2307ms.
+Build successful - 2288ms.
 
 Slowest Trees                                 | Total
 ----------------------------------------------+---------------------
-SassCompiler                                  | 1544ms
+SassCompiler                                  | 1515ms
 
 Slowest Trees (cumulative)                    | Total (avg)
 ----------------------------------------------+---------------------
-SassCompiler (1)                              | 1544ms
-Funnel (118)                                  | 155ms (1 ms)
+SassCompiler (1)                              | 1515ms
+Funnel (142)                                  | 158ms (1 ms)
 ```
+----
 
-and on master (9b695718b)
-
-initial of:
 ```
-Build successful - 4630ms.
+ember s --port 5511 &
+➜  slow-ember-cli-project git:(master) ✗ version: 1.13.8-master-a6e9e4eeaf
+Deprecation warning: sassOptions should be moved to your Brocfile
+Livereload server on http://localhost:49152
+Serving on http://localhost:5511/
+Autoprefixer's process() method is deprecated and will removed in next major release. Use postcss([autoprefixer]).process() instead
+Autoprefixer's process() method is deprecated and will removed in next major release. Use postcss([autoprefixer]).process() instead
+Autoprefixer's process() method is deprecated and will removed in next major release. Use postcss([autoprefixer]).process() instead
+
+Build successful - 5142ms.
 
 Slowest Trees                                 | Total
 ----------------------------------------------+---------------------
-SassCompiler                                  | 1938ms
-Babel                                         | 255ms
+SassCompiler                                  | 1785ms
+Babel                                         | 282ms
 
 Slowest Trees (cumulative)                    | Total (avg)
 ----------------------------------------------+---------------------
-SassCompiler (1)                              | 1938ms
-Babel (12)                                    | 1519ms (126 ms)
+SassCompiler (1)                              | 1785ms
+Babel (12)                                    | 1745ms (145 ms)
 
-```
+➜  slow-ember-cli-project git:(master) ✗ touch app/app.js
+➜  slow-ember-cli-project git:(master) ✗ file changed app.js
 
-and incremental of:
-
-```
-Build successful - 2186ms.
+Build successful - 1963ms.
 
 Slowest Trees                                 | Total
 ----------------------------------------------+---------------------
-SassCompiler                                  | 1529ms
+SassCompiler                                  | 1405ms
 
 Slowest Trees (cumulative)                    | Total (avg)
 ----------------------------------------------+---------------------
-SassCompiler (1)                              | 1529ms
+SassCompiler (1)                              | 1405ms
+
 ```
 
 This improvements are good, but really target problems related to bower_components size, not totall app/* or tests/* size
