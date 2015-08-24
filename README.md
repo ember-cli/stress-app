@@ -59,9 +59,11 @@ As it turns out, app.import has become more popular the expected. Rather then be
 * master (August 24, 2015)
   *   [initial warm] Build successful - 15090ms.
   *   [rebuild] Build successful - 6830ms.
-  
 
-[current work (persistent filters for faster warm boots)](https://github.com/ember-cli/ember-cli/issues/4645)
+Some filters, like babel/jshint/htmlbars are slow. If we can re-use the results from the last build, initial boot should improve. Turns out it helps quite a bit. 36,000ms -> 15,000ms on warm boots. On some apps, this can save minutes.
+[on ember itself](https://github.com/emberjs/ember.js/pull/12190) it went from 51995ms -> 15967ms.
+
+[related issue)](https://github.com/ember-cli/ember-cli/issues/4645)
 
 ....
 
