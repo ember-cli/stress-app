@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'console',
+    modulePrefix: 'stress-app',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
