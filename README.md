@@ -61,9 +61,11 @@ As it turns out, app.import has become more popular the expected. Rather then be
   *   [rebuild] Build successful - 6830ms.
 
 Some filters, like babel/jshint/htmlbars are slow. If we can re-use the results from the last build, initial boot should improve. Turns out it helps quite a bit. 36,000ms -> 15,000ms on warm boots. On some apps, this can save minutes.
-[on ember itself](https://github.com/emberjs/ember.js/pull/12190) it went from 51995ms -> 15967ms.
+[on ember itself](https://github.com/emberjs/ember.js/pull/12190) it went from 50,000ms -> 15,000ms.
 
-[related issue)](https://github.com/ember-cli/ember-cli/issues/4645)
+[related issue](https://github.com/ember-cli/ember-cli/issues/4645)
+
+* Up next, [ES6: App Tree] [App JS Files (1)] are basically doing duplicate effort, babel step could already do. For those users who are using babel, we should defer this work to that transform intsead. Ideally skipping this intermediate step all- together. This will hopefully help incremental builds, but we will likely see some initial build improvements aswell.
 
 ....
 
