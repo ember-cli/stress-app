@@ -57,8 +57,8 @@ In most cases, source map concat, is provided a list of files it explicitly care
 As it turns out, app.import has become more popular the expected. Rather then being used 5 or 6 times in an app. It is not uncommon to (large via addons) have hundreds of them. Originally, app.import was written in a way to work-around several issues including node-watcher being poor. Now with watchman, we can reasonably watch the whole tree. So we could literally delete the old code, remove hundreds of extra broccoli steps. And squeeze out some more performance.
 
 * master (August 24, 2015)
-*   [initial warm] Build successful - 15090ms.
-*   [rebuild] Build successful - 6830ms.
+  *   [initial warm] Build successful - 15090ms.
+  *   [rebuild] Build successful - 6830ms.
   
 
 [current work (persistent filters for faster warm boots)](https://github.com/ember-cli/ember-cli/issues/4645)
