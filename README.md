@@ -55,6 +55,10 @@ In most cases, source map concat, is provided a list of files it explicitly care
   *  [rebuild] Build successful - 5384ms.
 
 As it turns out, app.import has become more popular the expected. Rather then being used 5 or 6 times in an app. It is not uncommon to (large via addons) have hundreds of them. Originally, app.import was written in a way to work-around several issues including node-watcher being poor. Now with watchman, we can reasonably watch the whole tree. So we could literally delete the old code, remove hundreds of extra broccoli steps. And squeeze out some more performance.
+
+* master (August 24, 2015)
+*   [initial warm] Build successful - 15090ms.
+*   [rebuild] Build successful - 6830ms.
   
 
 [current work (persistent filters for faster warm boots)](https://github.com/ember-cli/ember-cli/issues/4645)
@@ -206,6 +210,50 @@ Concat: App (1)                               | 407ms
 Babel (13)                                    | 350ms (26 ms)
 ```
 
+```
+ember s
+version: 1.13.8-broccoli-viz-0ed4b89831
+
+Build successful - 15263ms.
+
+Slowest Trees                                 | Total
+----------------------------------------------+---------------------
+ES6: App Tree                                 | 4197ms
+SassCompiler                                  | 2214ms
+TemplateCompiler                              | 1674ms
+JSHint app- QUnit                             | 1083ms
+Funnel: App JS Files                          | 1054ms
+Babel                                         | 1049ms
+
+Slowest Trees (cumulative)                    | Total (avg)
+----------------------------------------------+---------------------
+ES6: App Tree (1)                             | 4197ms
+SassCompiler (1)                              | 2214ms
+Babel (13)                                    | 2108ms (162 ms)
+TemplateCompiler (2)                          | 1707ms (853 ms)
+JSHint app- QUnit (1)                         | 1083ms
+Funnel: App JS Files (1)                      | 1054ms
+
+➜  slow-ember-cli-project git:(master) ✗ touch app/app.js
+➜  slow-ember-cli-project git:(master) ✗ file changed app.js
+
+Build successful - 5876ms.
+
+Slowest Trees                                 | Total
+----------------------------------------------+---------------------
+Funnel: App JS Files                          | 1633ms
+SassCompiler                                  | 1572ms
+BroccoliMergeTrees                            | 944ms
+Concat: App                                   | 448ms
+
+Slowest Trees (cumulative)                    | Total (avg)
+----------------------------------------------+---------------------
+Funnel: App JS Files (1)                      | 1633ms
+SassCompiler (1)                              | 1572ms
+BroccoliMergeTrees (14)                       | 969ms (69 ms)
+Concat: App (1)                               | 448ms
+Babel (13)
+```
 This improvements have been mostly targeted a bower_components \w massive trees causing totally unexpected grief.
 
 Up next:
