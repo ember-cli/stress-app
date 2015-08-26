@@ -65,6 +65,9 @@ Some filters, like babel/jshint/htmlbars are slow. If we can re-use the results 
 
 [related issue](https://github.com/ember-cli/ember-cli/issues/4645)
 
+turns out warm boots are still abit slow
+* https://github.com/stefanpenner/broccoli-persistent-filter/pull/25 (improves babel warm boot 2108ms -> 1400ms), more to come.
+
 * Up next, [ES6: App Tree] [App JS Files (1)] are basically doing duplicate effort, babel step could already do. For those users who are using babel, we should defer this work to that transform intsead. Ideally skipping this intermediate step all- together. This will hopefully help incremental builds, but we will likely see some initial build improvements aswell.
 
 ....
