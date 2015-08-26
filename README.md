@@ -261,6 +261,48 @@ BroccoliMergeTrees (14)                       | 969ms (69 ms)
 Concat: App (1)                               | 448ms
 Babel (13)
 ```
+
+Wed 10:30am August 25
+
+```
+Build successful - 14127ms.
+
+Slowest Trees                                 | Total
+----------------------------------------------+---------------------
+ES6: App Tree                                 | 4296ms
+SassCompiler                                  | 2200ms
+TemplateCompiler                              | 1571ms
+Funnel: App JS Files                          | 934ms
+Babel                                         | 736ms
+
+Slowest Trees (cumulative)                    | Total (avg)
+----------------------------------------------+---------------------
+ES6: App Tree (1)                             | 4296ms
+SassCompiler (1)                              | 2200ms
+TemplateCompiler (3)                          | 1653ms (551 ms)
+Babel (14)                                    | 1495ms (106 ms)
+Funnel: App JS Files (1)                      | 934ms
+```
+
+```
+Build successful - 5876ms.
+
+Slowest Trees                                 | Total
+----------------------------------------------+---------------------
+Funnel: App JS Files                          | 1633ms
+SassCompiler                                  | 1572ms
+BroccoliMergeTrees                            | 944ms
+Concat: App                                   | 448ms
+
+Slowest Trees (cumulative)                    | Total (avg)
+----------------------------------------------+---------------------
+Funnel: App JS Files (1)                      | 1633ms
+SassCompiler (1)                              | 1572ms
+BroccoliMergeTrees (14)                       | 969ms (69 ms)
+Concat: App (1)                               | 448ms
+Babel (13)
+```
+
 This improvements have been mostly targeted a bower_components \w massive trees causing totally unexpected grief.
 
 Up next:
