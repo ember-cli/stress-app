@@ -70,6 +70,8 @@ turns out warm boots are still abit slow
 
 ### Up next;
 
+![times and plans](http://static.iamstef.net/Voila_Capture%202015-08-27_07-58-46_AM.png)
+
 * [ES6: App Tree] [App JS Files (1)] are basically doing duplicate effort, babel step could already do. For those users who are using babel, we should defer this work to that transform intsead. Ideally skipping this intermediate step all- together. This will hopefully help incremental builds, but we will likely see some initial build improvements aswell. (@chadhietala is takinga  stab: https://github.com/ember-cli/ember-cli/pull/4764)
 
 
