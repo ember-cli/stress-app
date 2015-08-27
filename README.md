@@ -68,7 +68,13 @@ Some filters, like babel/jshint/htmlbars are slow. If we can re-use the results 
 turns out warm boots are still abit slow
 * https://github.com/stefanpenner/broccoli-persistent-filter/pull/25 (improves babel warm boot 2108ms -> 1400ms), more to come.
 
-* Up next, [ES6: App Tree] [App JS Files (1)] are basically doing duplicate effort, babel step could already do. For those users who are using babel, we should defer this work to that transform intsead. Ideally skipping this intermediate step all- together. This will hopefully help incremental builds, but we will likely see some initial build improvements aswell.
+* Up next, [ES6: App Tree] [App JS Files (1)] are basically doing duplicate effort, babel step could already do. For those users who are using babel, we should defer this work to that transform intsead. Ideally skipping this intermediate step all- together. This will hopefully help incremental builds, but we will likely see some initial build improvements aswell. (@chadhietala is takinga  stab: https://github.com/ember-cli/ember-cli/pull/4764)
+
+
+* now that broccoli-plugin exists a stable outputDirectory is possible. This will allow us to re-write the common plugins to merely do delta updates on the output, rather then recreating the output. This has been part of the plan that prompted the broccoli-plugin api.
+
+
+* rather then reading the inputDir, we can defer to watchman (skipping input IO at all). Unfortunately we must wait until watchman adds symlink + watched symlink support. Or we can implement the resolving code on our side. They have plans to in afew weeks/month implement this, I suspect our timeline will align us with there progress.
 
 ....
 
