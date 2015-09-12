@@ -1,0 +1,34 @@
+{{!-- app/templates/components/l/comment-card-012.hbs --}}
+{{!-- Author: @chancancode. Taken from https://github.com/chancancode/hn-reader/blob/master/app/templates/components/comment-card.hbs --}}
+<div class="metadata">
+  <span class="submitter">{{link-to comment.submitter "user" comment.submitter}}</span> |
+  <span class="submitted">{{link-to comment.submitted (query-params highlight=comment.id)}}</span>
+</div>
+
+<div class="body" style=bodyStyle>{{comment.body}}</div>
+
+{{#if comment.comments}}
+
+  <div class="toggle-replies" {{action "toggleReplies"}}>
+    <i class="icon-chevron-right"></i>
+
+    {{#if isExpanded}}
+      {{pluralize comment.comments.length "reply"}}
+    {{else}}
+
+      {{#if comment.nestedCommentsCount}}
+        Show {{pluralize comment.comments.length "reply"}} and {{pluralize comment.nestedCommentsCount "nested comment"}}...
+      {{else}}
+        Show {{pluralize comment.comments.length "reply"}}...
+      {{/if}}
+
+    {{/if}}
+  </div>
+
+  <div class="replies">
+    {{#each comment.comments as |reply|}}
+      {{comment-card comment=reply highlight=highlight}}
+    {{/each}}
+  </div>
+
+{{/if}}
