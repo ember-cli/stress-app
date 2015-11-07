@@ -9,6 +9,28 @@ We will contiue to add scenarios that make it slow, then make it fast again
 
 ## Latest state
 
+
+```
+➜  slow-ember-cli-project git:(master) ✗ cloc --skip-uniqueness {app,tests}
+    2335 text files.
+    2335 unique files.
+       6 files ignored.
+
+http://cloc.sourceforge.net v 1.64  T=5.44 s (429.0 files/s, 20048.1 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Handlebars                     907           6055           1813          44432
+Javascript                    1423          13300           2608          40694
+SASS                             2              9              3             96
+HTML                             2             10              0             48
+-------------------------------------------------------------------------------
+SUM:                          2334          19374           4424          85270
+-------------------------------------------------------------------------------
+```
+
+*note this is without bower_components, which are also consulted and introduce another 86,000 files some of which are consulted as part of the build*
+
 ### initial warm build
 
 ```
