@@ -7,7 +7,47 @@ We will contiue to add scenarios that make it slow, then make it fast again
 [issues](https://github.com/ember-cli/stress-app/issues/) are going to track known issues with this app
 [ember-cli/issues](https://github.com/ember-cli/ember-cli/issues?q=is%3Aopen+is%3Aissue+label%3Aperformance) is meant for perf issues that in ember-cli but are likely described by a scenario here.
 
-## Current state:
+## Latest state
+
+rebuild:
+
+```
+Build successful - 1997ms.
+
+Slowest Trees                                 | Total
+----------------------------------------------+---------------------
+SassCompiler                                  | 1013ms
+TreeMerger (appTestTrees)                     | 169ms
+TreeMerger (app)                              | 150ms
+
+Slowest Trees (cumulative)                    | Total (avg)
+----------------------------------------------+---------------------
+SassCompiler (1)                              | 1013ms
+TreeMerger (appTestTrees) (1)                 | 169ms
+TreeMerger (app) (1)                          | 150ms
+Babel (17)                                    | 108ms (6 ms)
+Funnel (60)                                   | 101ms (1 ms)
+```
+
+
+top offender: SassCompiler cacheKey construction. Basically it currently scans 87,823s files to detect a change, because
+bower_components is mega massive. Basically, I suspect I have reduced the brought force time to potentially its lower limit (will do some more investigation to confirm this). 
+
+I have begun work on massaging broccoli to all us to seed "changes" via a single watchman query, I wouldn't count on it landing too quickly, but it is something I hope to make progress on soon. This has the potentially of reducing (even for 100,000+ files) the cache derivation time by atleast an order of magnitude or more.
+
+OFfending logging illustrating the problem.
+
+```
+ '/Users/stefanpenner/tmp/slow-ember-cli-project/tmp/simple_concat-input_base_path-hmvo2HsQ.tmp/0' ] } +55ms
+  broccoli-caching-writer:SimpleConcat > [Concat: App] derive cacheKey in 56ms +1ms
+  broccoli-caching-writer:SassCompiler walking undefined +35s
+  broccoli-caching-writer:SassCompiler walking undefined +1s
+  broccoli-caching-writer:SassCompiler { stats: 0, files: 87823, inputPaths: [ '/Users/stefanpenner/tmp/slow-ember-cli-project/tmp/sass_compiler-input_base_path-PJtisOR9.tmp/0', '/Users/stefanpenner/tmp/slow-ember-cli-project/tmp/sass_compiler-input_base_path-PJtisOR9.tmp/1' ] } +3ms
+  broccoli-caching-writer:SassCompiler derive cacheKey in 1013ms +1ms
+```
+
+
+## Updates:
 
 
 * many app.imports (lets get the number)
