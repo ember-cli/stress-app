@@ -9,7 +9,29 @@ We will contiue to add scenarios that make it slow, then make it fast again
 
 ## Latest state
 
-rebuild:
+### initial warm build
+
+```
+Build successful - 8412ms.
+
+Slowest Trees                                 | Total
+----------------------------------------------+---------------------
+Babel                                         | 1784ms
+SassCompiler                                  | 1177ms
+TemplateCompiler                              | 873ms
+Babel                                         | 611ms
+JSHint app- QUnit                             | 588ms
+
+Slowest Trees (cumulative)                    | Total (avg)
+----------------------------------------------+---------------------
+Babel (17)                                    | 3378ms (198 ms)
+SassCompiler (1)                              | 1177ms
+TemplateCompiler (3)                          | 924ms (308 ms)
+JSHint app- QUnit (1)                         | 588ms
+
+```
+
+### rebuild:
 
 ```
 Build successful - 1997ms.
@@ -35,7 +57,9 @@ bower_components is mega massive. Basically, I suspect I have reduced the brough
 
 I have begun work on massaging broccoli to all us to seed "changes" via a single watchman query, I wouldn't count on it landing too quickly, but it is something I hope to make progress on soon. This has the potentially of reducing (even for 100,000+ files) the cache derivation time by atleast an order of magnitude or more.
 
-OFfending logging illustrating the problem.
+The above abstraction has the potential to also unlock another round of initial build time improvements.
+
+*OFfending logging illustrating the problem.*
 
 ```
  '/Users/stefanpenner/tmp/slow-ember-cli-project/tmp/simple_concat-input_base_path-hmvo2HsQ.tmp/0' ] } +55ms
