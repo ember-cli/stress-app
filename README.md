@@ -67,8 +67,11 @@ TreeMerger (app)                              | 150ms
 Slowest Trees (cumulative)                    | Total (avg)
 ----------------------------------------------+---------------------
 SassCompiler (1)                              | 1013ms
-TreeMerger (appTestTrees) (1)                 | 169ms
-TreeMerger (app) (1)                          | 150ms
+** biggest offender, when we started this was 20,000ms+
+** even though good progress as been made, I plan that should likely dramatically reduce this
+
+TreeMerger (appTestTrees) (1)                 | 169ms * current focus (causes lots of wasteful writes/deletes)
+TreeMerger (app) (1)                          | 150ms * current focus (causes lots of wasteful writes/deletes)
 Babel (17)                                    | 108ms (6 ms)
 Funnel (60)                                   | 101ms (1 ms)
 ```
