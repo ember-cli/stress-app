@@ -55,6 +55,7 @@ Slowest Trees (cumulative)                    | Total (avg)
 ----------------------------------------------+---------------------
 SassCompiler (1)                              | 1013ms * biggest offender, when we started this was 20,000ms+
 ** even though good progress as been made, I plan that should likely dramatically reduce this
+** note, this is a pretty extreme scenario. A bower_components of 86,000 files is a pretty hefty outlier
 
 TreeMerger (appTestTrees) (1)                 | 169ms * current focus (causes lots of wasteful writes/deletes)
 TreeMerger (app) (1)                          | 150ms * current focus (causes lots of wasteful writes/deletes)
