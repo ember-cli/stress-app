@@ -7,7 +7,7 @@ We will contiue to add scenarios that make it slow, then make it fast again
 [issues](https://github.com/ember-cli/stress-app/issues/) are going to track known issues with this app
 [ember-cli/issues](https://github.com/ember-cli/ember-cli/issues?q=is%3Aopen+is%3Aissue+label%3Aperformance) is meant for perf issues that in ember-cli but are likely described by a scenario here.
 
-## Latest state
+## Latest state (with 86,000 files in bower_components)
 
 
 ```
