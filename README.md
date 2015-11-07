@@ -36,13 +36,6 @@ SUM:                          2334          19374           4424          85270
 ```
 Build successful - 8412ms.
 
-Slowest Trees                                 | Total
-----------------------------------------------+---------------------
-Babel                                         | 1784ms
-SassCompiler                                  | 1177ms
-TemplateCompiler                              | 873ms
-Babel                                         | 611ms
-JSHint app- QUnit                             | 588ms
 
 Slowest Trees (cumulative)                    | Total (avg)
 ----------------------------------------------+---------------------
@@ -58,16 +51,9 @@ JSHint app- QUnit (1)                         | 588ms
 ```
 Build successful - 1997ms.
 
-Slowest Trees                                 | Total
-----------------------------------------------+---------------------
-SassCompiler                                  | 1013ms
-TreeMerger (appTestTrees)                     | 169ms
-TreeMerger (app)                              | 150ms
-
 Slowest Trees (cumulative)                    | Total (avg)
 ----------------------------------------------+---------------------
-SassCompiler (1)                              | 1013ms
-** biggest offender, when we started this was 20,000ms+
+SassCompiler (1)                              | 1013ms * biggest offender, when we started this was 20,000ms+
 ** even though good progress as been made, I plan that should likely dramatically reduce this
 
 TreeMerger (appTestTrees) (1)                 | 169ms * current focus (causes lots of wasteful writes/deletes)
