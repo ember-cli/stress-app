@@ -7,7 +7,86 @@ We will contiue to add scenarios that make it slow, then make it fast again
 [issues](https://github.com/ember-cli/stress-app/issues/) are going to track known issues with this app
 [ember-cli/issues](https://github.com/ember-cli/ember-cli/issues?q=is%3Aopen+is%3Aissue+label%3Aperformance) is meant for perf issues that in ember-cli but are likely described by a scenario here.
 
-## Latest state (with 86,000 files in bower_components)
+## Latest
+```
+➜  slow-ember-cli-project git:(master) ✗ cloc --skip-uniqueness {app,tests}
+    2335 text files.
+    2335 unique files.
+       6 files ignored.
+
+http://cloc.sourceforge.net v 1.64  T=5.44 s (429.0 files/s, 20048.1 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Handlebars                     907           6055           1813          44432
+Javascript                    1423          13300           2608          40694
+SASS                             2              9              3             96
+HTML                             2             10              0             48
+-------------------------------------------------------------------------------
+SUM:                          2334          19374           4424          85270
+-------------------------------------------------------------------------------
+```
+
+*note this is without bower_components, which are also consulted and introduce another 86,000 files some of which are consulted as part of the build*
+
+
+
+before
+```
+➜  slow-ember-cli-project git:(master) ✗ file changed app.js
+
+Build successful - 1871ms.
+
+Slowest Trees                                 | Total
+----------------------------------------------+---------------------
+SassCompiler                                  | 969ms
+TreeMerger (appTestTrees)                     | 170ms
+TreeMerger (app)                              | 139ms
+
+Slowest Trees (cumulative)                    | Total (avg)
+----------------------------------------------+---------------------
+SassCompiler (1)                              | 969ms
+TreeMerger (appTestTrees) (1)                 | 170ms
+TreeMerger (app) (1)                          | 139ms
+Babel (17)                                    | 116ms (6 ms)
+```
+
+after
+```
+➜  slow-ember-cli-project git:(master) ✗ file changed app.js
+
+Build successful - 1464ms.
+
+Slowest Trees                                 | Total
+----------------------------------------------+---------------------
+SassCompiler                                  | 940ms
+
+Slowest Trees (cumulative)                    | Total (avg)
+----------------------------------------------+---------------------
+SassCompiler (1)                              | 940ms
+Babel (17)                                    | 95ms (5 ms)
+Funnel (60)                                   | 88ms (1 ms)
+```
+
+top offender: SassCompiler cacheKey construction. Basically it currently scans 87,823s files to detect a change, because
+bower_components is mega massive. Basically, I suspect I have reduced the brought force time to potentially its lower limit (will do some more investigation to confirm this). 
+
+I have begun work on massaging broccoli to all us to seed "changes" via a single watchman query, I wouldn't count on it landing too quickly, but it is something I hope to make progress on soon. This has the potentially of reducing (even for 100,000+ files) the cache derivation time by atleast an order of magnitude or more.
+
+The above abstraction has the potential to also unlock another round of initial build time improvements.
+
+*OFfending logging illustrating the problem.*
+
+```
+ '/Users/stefanpenner/tmp/slow-ember-cli-project/tmp/simple_concat-input_base_path-hmvo2HsQ.tmp/0' ] } +55ms
+  broccoli-caching-writer:SimpleConcat > [Concat: App] derive cacheKey in 56ms +1ms
+  broccoli-caching-writer:SassCompiler walking undefined +35s
+  broccoli-caching-writer:SassCompiler walking undefined +1s
+  broccoli-caching-writer:SassCompiler { stats: 0, files: 87823, inputPaths: [ '/Users/stefanpenner/tmp/slow-ember-cli-project/tmp/sass_compiler-input_base_path-PJtisOR9.tmp/0', '/Users/stefanpenner/tmp/slow-ember-cli-project/tmp/sass_compiler-input_base_path-PJtisOR9.tmp/1' ] } +3ms
+  broccoli-caching-writer:SassCompiler derive cacheKey in 1013ms +1ms
+```
+
+## Latest(older) state (with 86,000 files in bower_components)
 
 
 ```
@@ -62,26 +141,6 @@ TreeMerger (app) (1)                          | 150ms * current focus (causes lo
 Babel (17)                                    | 108ms (6 ms)
 Funnel (60)                                   | 101ms (1 ms)
 ```
-
-
-top offender: SassCompiler cacheKey construction. Basically it currently scans 87,823s files to detect a change, because
-bower_components is mega massive. Basically, I suspect I have reduced the brought force time to potentially its lower limit (will do some more investigation to confirm this). 
-
-I have begun work on massaging broccoli to all us to seed "changes" via a single watchman query, I wouldn't count on it landing too quickly, but it is something I hope to make progress on soon. This has the potentially of reducing (even for 100,000+ files) the cache derivation time by atleast an order of magnitude or more.
-
-The above abstraction has the potential to also unlock another round of initial build time improvements.
-
-*OFfending logging illustrating the problem.*
-
-```
- '/Users/stefanpenner/tmp/slow-ember-cli-project/tmp/simple_concat-input_base_path-hmvo2HsQ.tmp/0' ] } +55ms
-  broccoli-caching-writer:SimpleConcat > [Concat: App] derive cacheKey in 56ms +1ms
-  broccoli-caching-writer:SassCompiler walking undefined +35s
-  broccoli-caching-writer:SassCompiler walking undefined +1s
-  broccoli-caching-writer:SassCompiler { stats: 0, files: 87823, inputPaths: [ '/Users/stefanpenner/tmp/slow-ember-cli-project/tmp/sass_compiler-input_base_path-PJtisOR9.tmp/0', '/Users/stefanpenner/tmp/slow-ember-cli-project/tmp/sass_compiler-input_base_path-PJtisOR9.tmp/1' ] } +3ms
-  broccoli-caching-writer:SassCompiler derive cacheKey in 1013ms +1ms
-```
-
 
 ## Updates:
 
