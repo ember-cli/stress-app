@@ -41,7 +41,7 @@
     "ember-document-title": "1.13.0",
     "ember-export-application-global": "^1.0.4",
     "ember-inflector": "~1.9.1",
-    "ember-intl": "2.0.0-beta.18",
+    "ember-intl": "^2.0.0",
     "install": "0.1.8"
   }
 }
