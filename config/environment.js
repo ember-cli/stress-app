@@ -18,9 +18,6 @@ module.exports = function(environment) {
       // when it is created
 
     },
-    sassOptions: {
-      includePaths: ['bower_components/material-design-lite-src/src']
-    },
     intl: {
       defaultLocale: 'en-us' // default value
     }

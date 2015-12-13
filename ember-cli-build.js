@@ -7,7 +7,9 @@ module.exports = function(defaults) {
     'ember-cli-jquery-ui': {
       theme: 'ui-darkness'
     },
-
+    sassOptions: {
+      includePaths: ['bower_components/material-design-lite-src/src']
+    },
     sourcemaps: {
       enabled: false,
       sourceMap: false
