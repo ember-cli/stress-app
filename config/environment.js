@@ -19,7 +19,7 @@ module.exports = function(environment) {
 
     },
     intl: {
-      defaultLocale: 'en-us' // default value
+      baseLocale: 'en-us' // default value
     }
   };
   if (environment === 'development') {
