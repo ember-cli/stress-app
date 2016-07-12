@@ -5,7 +5,7 @@
     "ember-cli-shims": "0.1.0",
     "ember-cli-test-loader": "0.2.2",
     "ember-qunit-notifications": "0.1.0",
-    "material-design-lite-src": "google/material-design-lite#master",
+    "material-design-lite-src": "google/material-design-lite#e54b364d662022a66c0b0a467f89d8f28647c064",
     "material-design-icons": "~2.0.0",
     "jquery-ui": "1.11.4",
     "jquery-file-upload": "9.5.7",
