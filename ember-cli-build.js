@@ -2,7 +2,7 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const nodeSass = require('node-sass');
-require('./fs-instrumentation');
+// require('./fs-instrumentation');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {

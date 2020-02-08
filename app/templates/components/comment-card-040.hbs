@@ -1,8 +1,8 @@
 {{!-- app/templates/components/comment-card-040.hbs --}}
 {{!-- Author: @chancancode. Taken from https://github.com/chancancode/hn-reader/blob/master/app/templates/components/comment-card.hbs --}}
 <div class="metadata">
-  <span class="submitter">{{link-to comment.submitter "user" comment.submitter}}</span> |
-  <span class="submitted">{{link-to comment.submitted (query-params highlight=comment.id)}}</span>
+  <span class="submitter"><LinkTo @route="user" @model={{comment.submitter}}>{{comment.submitter}}</LinkTo></span> |
+  <span class="submitted"><LinkTo @query={{hash highlight=comment.id}}>{{comment.submitted}}</LinkTo></span>
 </div>
 
 <div class="body" style=bodyStyle>{{comment.body}}</div>
@@ -27,7 +27,7 @@
 
   <div class="replies">
     {{#each comment.comments as |reply|}}
-      {{comment-card comment=reply highlight=highlight}}
+      <CommentCard @comment={{reply}} @highlight={{highlight}} />
     {{/each}}
   </div>
 
