@@ -1,23 +1,28 @@
 ---
 language: node_js
 node_js:
-  - "0.12"
+  - "8"
 
 sudo: false
+dist: trusty
+
+addons:
+  chrome: stable
 
 cache:
   directories:
-    - node_modules
+    - $HOME/.npm
 
-before_install:
-  - export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
-  - "npm config set spin false"
-  - "npm install -g npm@^2"
+env:
+  global:
+    # See https://git.io/vdao3 for details.
+    - JOBS=1
 
-install:
-  - npm install -g bower
-  - npm install
-  - bower install
+branches:
+  only:
+    - master
 
 script:
+  - npm run lint:hbs
+  - npm run lint:js
   - npm test

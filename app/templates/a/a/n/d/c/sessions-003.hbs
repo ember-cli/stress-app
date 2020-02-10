@@ -1,7 +1,7 @@
 {{!-- app/templates/a/a/n/d/c/sessions-003.hbs --}}
 {{!-- Author: travis-ci. Taken from https://raw.githubusercontent.com/travis-ci/travis-web/master/app/templates/build.hbs --}}
 {{#if loading}}
-  {{loading-indicator}}
+  <LoadingIndicator />
 {{else}}
   <section class="tile tile--pass row {{build.state}}">
     <div class="tile-status">
@@ -39,9 +39,9 @@
 
     <div class="tile-additional medium-4 columns end">
       <ul class="repo-main-info">
-        <li class="repo-build-status">{{#link-to "build" repo build}}
+        <li class="repo-build-status"><LinkTo @route="build" @models={{array repo build}}>
           <span class="icon icon--hash"></span>
-          {{build.number}} {{humanize-state build.state}}{{/link-to}}
+          {{build.number}} {{humanize-state build.state}}</LinkTo>
         </li>
         <li>
           <a class="commit" href={{urlGithubCommit}}>
@@ -70,19 +70,19 @@
         </li>
       </ul>
 
-      {{repo-actions build=build repo=build.repo user=auth.currentUser}}
+      <RepoActions @build={{build}} @repo={{build.repo}} @user={{auth.currentUser}} />
     </div>
   </section>
 
   {{#if build.isMatrix}}
     {{#if jobsLoaded}}
-      {{jobs-list jobs=build.requiredJobs repo=repo required="true"}}
-      {{jobs-list jobs=build.allowedFailureJobs repo=repo}}
+      <JobsList @jobs={{build.requiredJobs}} @repo={{repo}} @required="true" />
+      <JobsList @jobs={{build.allowedFailureJobs}} @repo={{repo}} />
     {{else}}
-      {{loading-indicator center=true}}
+      <LoadingIndicator @center={{true}} />
     {{/if}}
   {{else}}
-    {{job-log job=build.jobs.firstObject}}
+    <JobLog @job={{build.jobs.firstObject}} />
   {{/if}}
 
 {{/if}}
